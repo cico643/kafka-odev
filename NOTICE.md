@@ -1,6 +1,6 @@
 # Notices for kafka-odev project
 
-This content is produced and maintained by github.com/cico643.
+This content is produced and maintained by https://github.com/cico643.
 
 ## Declared Project Licenses
 
