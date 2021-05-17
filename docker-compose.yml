@@ -1,0 +1,44 @@
+version: '3'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    restart: on-failure
+    ports:
+      - 2181:2181
+  kafka:
+    image: wurstmeister/kafka
+    restart: on-failure
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_CREATE_TOPICS: message:1:1 # message isimli 1 partition'lı topici otomatik olusturma.
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    ports:
+      - 9092:9092
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  producer:
+    build: ./producer
+    restart: on-failure
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    ports:
+      - 3000:3000
+    volumes:
+      - /app/node_modules
+      - ./producer:/app
+  consumer:
+    build: ./consumer
+    restart: on-failure
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /app/node_modules
+      - ./consumer:/app
