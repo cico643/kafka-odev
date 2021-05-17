@@ -1,6 +1,5 @@
 const { Kafka } = require('kafkajs');
 
-consumerStart();
 const consumerStart = async () => {
   try {
     const kafka = new Kafka({
@@ -21,3 +20,5 @@ const consumerStart = async () => {
     console.log('something went wrong');
   }
 };
+
+consumerStart();

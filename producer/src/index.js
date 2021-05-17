@@ -26,5 +26,4 @@ const producerStart = async () => {
   }
 };
 producerStart();
-
 app.listen(3000);
