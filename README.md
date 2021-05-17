@@ -1,6 +1,6 @@
 ## Nodejs Kafka
 
-Apache Kafka ile basit producer/consumer yapısının gerçekleştirildiği NodeJs uygulaması.
+Apache Kafka ile basit producer/consumer iletişiminin gerçekleştirildiği NodeJs uygulaması.
 
 ### Build ve Run adımları
 
